@@ -19,9 +19,10 @@ SELECT * FROM warehouse
   WHERE products.description = 'diet pepsi';
 
 --5. Get the number of orders for each customer.
-SELECT * FROM orders
-  JOIN addresses ON addresses.id = orders.address_id
-  JOIN customers ON customers.id = addresses.customer_id;
+SELECT first_name, COUNT (first_name) FROM customers
+	JOIN addresses ON customers.id = addresses.customer_id
+	JOIN orders ON orders.address_id = addresses.id
+	GROUP BY first_name
 
 --6. How many customers do we have?
 SELECT COUNT (*) from customers;
